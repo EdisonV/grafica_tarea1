@@ -1,4 +1,4 @@
-function M = laberinto (m)
+function M = laberinto1 (m)
 n=2*m+3;
 %0: muralla
 %1: pasillo
@@ -10,28 +10,15 @@ M(:,[1 2 :2 :end end])=0;
 
 b=[-1 0 1 0; 0 1 0 -1];
 
-
-i=randi([3 n-2]);
-j=randi(2);
-%M(i,1)=1;
 i=3;
 j=3;
 
 viendo=[i;j];
 
-%inicio
-
 M(i,j)=3;
 V=viendo;
-M
 
 while(~isempty(V))
-%      x=b+repmat(viendo,1,4);
-%     y=[];
-%     for a=1:4
-%         y=[y M(x(1,a),x(2,a))];
-%     end
-%     vec_no=find(y==2);
     x=su(b,viendo);
     vec_no=hay(x,M)
     
@@ -53,6 +40,7 @@ while(~isempty(V))
         end
         V=V(:,2:end);
     end
+end
     for i=1:size(M)
         for j= 1:size(M)
             if M(i,j)~=0
@@ -60,4 +48,7 @@ while(~isempty(V))
             end
         end
     end
+    M(3,2)=1;
+    M(3,1)=1;
+
 end
